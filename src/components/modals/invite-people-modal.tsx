@@ -6,23 +6,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useModal } from "@/hooks/use-modal-store";
-import { useRouter } from "next/navigation";
-import * as z from "zod";
 import { Label } from "@/components/ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Check, Copy, RefreshCcw } from "lucide-react";
+import { useModal } from "@/hooks/use-modal-store";
 import useOrigin from "@/hooks/use-origin";
+import { cn } from "@/lib/utils";
+import axios from "axios";
+import { Check, Copy, RefreshCcw } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function InvitePeople() {
   const { isOpen, onClose, type, data, onOpen } = useModal();
   const origin = useOrigin();
-  const router = useRouter();
   const isModalOpen = isOpen && type === "invitePeople";
   const { server } = data;
 
@@ -46,7 +43,6 @@ export default function InvitePeople() {
       const response = await axios.patch(
         `/api/servers/${server?.id}/invite-code`
       );
-      console.log(response.data);
       onOpen("invitePeople", { server: response.data });
     } catch (error) {
       toast.error("Someting went wrong");
