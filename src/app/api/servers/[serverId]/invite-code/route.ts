@@ -7,7 +7,6 @@ export async function PATCH(
   request: Request,
   { params }: { params: { serverId: string } }
 ) {
-  const { name, imageUrl } = await request.json();
   try {
     const profile = await currentProfile();
 
@@ -19,13 +18,15 @@ export async function PATCH(
       return new NextResponse("Server ID Missing", { status: 400 });
     }
 
+    const newInviteCode = uuidv4();
+
     const server = await db.server.update({
       where: {
         id: params.serverId,
+        profileId: profile.id,
       },
       data: {
-        name,
-        imageUrl,
+        inviteCode: newInviteCode,
       },
     });
 

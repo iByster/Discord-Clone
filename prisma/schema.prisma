@@ -27,7 +27,7 @@ model Profile {
 
 model Server {
   id         String   @id @default(uuid())
-  inviteCode String
+  inviteCode String   @unique
   name       String
   imageUrl   String
   profileId  String
