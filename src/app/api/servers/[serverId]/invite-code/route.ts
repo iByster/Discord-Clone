@@ -32,7 +32,7 @@ export async function PATCH(
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log("[SERVER_ID]", error);
+    console.log("[SERVER_ID_INVITE_CODE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

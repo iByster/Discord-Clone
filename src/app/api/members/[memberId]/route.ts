@@ -1,7 +1,6 @@
 import currentProfile from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-import { v4 as uuidv4 } from "uuid";
 
 export async function PATCH(
   request: Request,
@@ -60,7 +59,7 @@ export async function PATCH(
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log("[SERVER_ID]", error);
+    console.log("[SERVER_ID_MEMBERS_PATCH]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
@@ -115,7 +114,7 @@ export async function DELETE(
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log("[SERVER_ID]", error);
+    console.log("[MEMBER_ID_MEMBERS_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

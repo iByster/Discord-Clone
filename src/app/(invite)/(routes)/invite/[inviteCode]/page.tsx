@@ -33,8 +33,6 @@ export default async function InviteCodePage({
     },
   });
 
-  console.log(existingServer);
-
   if (existingServer) {
     return redirect(`/servers/${existingServer.id}`);
   }
@@ -51,8 +49,6 @@ export default async function InviteCodePage({
       },
     },
   });
-
-  console.log("server", server);
 
   if (server) {
     return redirect(`/servers/${server.id}`);

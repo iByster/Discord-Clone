@@ -94,7 +94,9 @@ export default function CreateServer() {
                 name="imageUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Server image</FormLabel>
+                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-zinc-400">
+                      Server image
+                    </FormLabel>
                     <div className="flex justify-center items-center text-center h-64 ">
                       <FormControl>
                         <FileUpload
@@ -116,7 +118,9 @@ export default function CreateServer() {
               name="name"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel>Server name</FormLabel>
+                  <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-zinc-400">
+                    Server name
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
