@@ -11,6 +11,7 @@ import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import ServerSection from "./server-section";
 import ServerChannel from "./server-channel";
+import { ServerMember } from "./server-member";
 
 interface IServerSidebar {
   serverId: string;
@@ -126,7 +127,7 @@ export default async function ServerSidebar({ serverId }: IServerSidebar) {
         </div>
         <Separator className="bg-zinc-200 dark:bg-zinc-700 rounded-md my-2" />
         {!!textChannels?.length && (
-          <div>
+          <div className="mb-2">
             <ServerSection
               label="Text channels"
               sectionType="channels"
@@ -145,7 +146,7 @@ export default async function ServerSidebar({ serverId }: IServerSidebar) {
           </div>
         )}
         {!!audioChannels?.length && (
-          <div>
+          <div className="mb-2">
             <ServerSection
               label="Audio channels"
               sectionType="channels"
@@ -164,7 +165,7 @@ export default async function ServerSidebar({ serverId }: IServerSidebar) {
           </div>
         )}
         {!!videoChannels?.length && (
-          <div>
+          <div className="mb-2">
             <ServerSection
               label="Video channels"
               sectionType="channels"
@@ -183,13 +184,18 @@ export default async function ServerSidebar({ serverId }: IServerSidebar) {
           </div>
         )}
         {!!members?.length && (
-          <div>
+          <div className="mb-2">
             <ServerSection
               label="Members"
               sectionType="members"
               memberRole={currentRole}
               server={server}
             />
+            <div className="space-y-[2px]">
+              {members.map((member) => (
+                <ServerMember key={member.id} member={member} server={server} />
+              ))}
+            </div>
           </div>
         )}
       </ScrollArea>
