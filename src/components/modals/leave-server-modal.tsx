@@ -56,7 +56,7 @@ export default function LeaveServer() {
             leave so soon?
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="mt-8 flex items-center justify-center gap-x-4">
+        <DialogFooter className="mt-6 flex items-center justify-center gap-x-4 py-4 border-t-2">
           <Button
             className="px-8"
             variant={"ghost"}

@@ -16,7 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ChannelType } from "@prisma/client";
 import axios from "axios";
 import { Check, Copy, RefreshCcw } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
@@ -56,13 +56,14 @@ export default function CreateChannel() {
   const router = useRouter();
   const { isOpen, onClose, type, data, onOpen } = useModal();
   const isModalOpen = isOpen && type === "createChannel";
-  const { server } = data;
+  const params = useParams();
+  const { server, channelType } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: ChannelType.TEXT,
+      type: channelType || ChannelType.TEXT,
     },
   });
 
@@ -74,7 +75,7 @@ export default function CreateChannel() {
     const url = qs.stringifyUrl({
       url: `/api/channels`,
       query: {
-        serverId: server?.id,
+        serverId: server?.id || params?.serverId,
       },
     });
 
